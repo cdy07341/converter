@@ -236,7 +236,7 @@ func (t *Table2Struct) Run() error {
 	}
 	defer f.Close()
 
-	f.WriteString(packageName + importContent + t.BeforeContent + structContent + t.AfterContent)
+	f.WriteString(packageName + importContent + t.BeforeContent + "\n" + structContent + t.AfterContent)
 
 	cmd := exec.Command("gofmt", "-w", filePath)
 	cmd.Run()
