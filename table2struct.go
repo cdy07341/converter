@@ -211,7 +211,7 @@ func (t *Table2Struct) Run() error {
 			structContent += fmt.Sprintf("func (%s) %s() string {\n",
 				structName, t.realNameMethod)
 			structContent += fmt.Sprintf("%sreturn \"%s\"\n",
-				tab(depth), tableRealName)
+				tab(depth), "tableName")
 			structContent += "}\n\n"
 		}
 	}
