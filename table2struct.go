@@ -210,7 +210,7 @@ func (t *Table2Struct) Run() error {
 		if t.realNameMethod != "" {
 			structContent += fmt.Sprintf("func (%s) %s() string {\n",
 				structName, t.realNameMethod)
-			structContent += fmt.Sprintf("%sreturn \"%s\"\n",
+			structContent += fmt.Sprintf("%sreturn %s\n",
 				tab(depth), "tableName")
 			structContent += "}\n\n"
 		}
