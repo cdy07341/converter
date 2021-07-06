@@ -63,6 +63,7 @@ type Table2Struct struct {
 	packageName    string // 生成struct的包名(默认为空的话, 则取名为: package model)
 	tagKey         string // tag字段的key值,默认是orm
 	dateToTime     bool   // 是否将 date相关字段转换为 time.Time,默认否
+	DiyContent 	   string //自定义内容
 }
 
 type T2tConfig struct {
@@ -130,6 +131,12 @@ func (t *Table2Struct) DateToTime(d bool) *Table2Struct {
 
 func (t *Table2Struct) Config(c *T2tConfig) *Table2Struct {
 	t.config = c
+	return t
+}
+
+func (t *Table2Struct) SetDiyContent(content string) *Table2Struct {
+	t.DiyContent = content
+
 	return t
 }
 
@@ -222,7 +229,7 @@ func (t *Table2Struct) Run() error {
 	}
 	defer f.Close()
 
-	f.WriteString(packageName + importContent + structContent)
+	f.WriteString(packageName + importContent + structContent + t.DiyContent)
 
 	cmd := exec.Command("gofmt", "-w", filePath)
 	cmd.Run()
